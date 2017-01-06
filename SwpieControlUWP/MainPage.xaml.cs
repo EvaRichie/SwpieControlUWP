@@ -26,5 +26,10 @@ namespace SwpieControlUWP
         {
             this.InitializeComponent();
         }
+
+        private void SwipeControl_swipeEventHandler(object sender, SwipeEventArgs e)
+        {
+
+        }
     }
 }

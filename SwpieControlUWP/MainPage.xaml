@@ -8,6 +8,67 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView x:Name="lv1">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.Items>
+                <x:String>mail 1</x:String>
+                <x:String>mail 2</x:String>
+                <x:String>mail 3</x:String>
+                <x:String>mail 4</x:String>
+            </ListView.Items>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:SwipeControl HorizontalAlignment="Stretch" swipeEventHandler="SwipeControl_swipeEventHandler">
+                        <local:SwipeControl.LeftContent>
+                            <Grid Background="Blue">
+                                <TextBlock Text="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </Grid>
+                        </local:SwipeControl.LeftContent>
+                        <local:SwipeControl.RightContent>
+                            <Grid Background="Red">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="Col0" Width="*"/>
+                                    <ColumnDefinition x:Name="Col1" Width="*"/>
+                                    <ColumnDefinition x:Name="Col2" Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Background="Yellow">
+                                    <TextBlock Text="Yello feature Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                                <Grid Grid.Column="1" Background="Green">
+                                    <TextBlock Text="Green feature Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                                <TextBlock Grid.Column="2" Text="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Target="Col0.Width" Value="2*"/>
+                                                <Setter Target="Col1.Width" Value="2*"/>
+                                                <Setter Target="Col2.Width" Value="*"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Compact">
+                                            <VisualState.Setters>
+                                                <Setter Target="Col0.Width" Value="*"/>
+                                                <Setter Target="Col1.Width" Value="*"/>
+                                                <Setter Target="Col2.Width" Value="*"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </local:SwipeControl.RightContent>
+                        <Grid Background="AliceBlue">
+                            <TextBlock Text="{Binding}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </local:SwipeControl>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
